@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="container mt-5">
+
+        <table class="table border">
+        <thead>
+            <tr>
+            <th scope="col">Username</th>
+            <th scope="col">{{user}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">last login:</th>
+            <td>{{user.last_login}}</td>
+            </tr>
+
+            <tr>
+            <th scope="row">email</th>
+            <td>{{user.email}}</td>
+            </tr>
+
+            <tr>
+            <th scope="row">firstname</th>
+            <td>{{user.first_name}}</td>
+            </tr>
+
+            <tr>
+            <th scope="row">lastname</th>
+            <td>{{user.last_name}}</td>
+            </tr>
+
+        </tbody>
+        </table>
+
+      {% if request.user.is_superuser %}
+        <table class="table border">
+        <thead class="text-center">
+            <tr>
+            <th scope="col">Username</th>
+          
+            </tr>
+        </thead>
+        <tbody>
+          {% for userinfo in userinfo %}
+            <tr>
+              <td class="text-center">
+                <a href="{% url 'userdetail' userinfo.id %}">
+                    {{userinfo}}
+                </a> 
+              </td>
+            </tr>
+
+          {% endfor %}
+            
+
+        </tbody>
+        </table>
+      {% endif %}
+      
+      <div class="d-flex justify-content-around">
+        <div class="d-inline">
+          <a class="btn btn-outline-secondary"  href="{% url 'changepassword' %}" >Forgot Password?</a>   
+        </div>
+        <div class="d-inline" >
+          <a class="btn btn-outline-primary"  href="{% url 'logout' %}">LogOut </a> 
+        </div>
+        <div class="d-inline" >
+          <a class="btn btn-outline-warning" href="{% url 'changeprofile' %}">Change Profile</a>
+        </div>
+      </div>
+    
+
+    </div>
+
+    
+
+
+    
+
+{% endblock body %}

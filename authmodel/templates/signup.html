@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    
+
+    <br>
+    <div class="container">
+        <form class="form-group" action="" method="POST" novalidate>
+        {% csrf_token %}
+            {% for form  in form %}
+                <div class="form-group">
+
+                    {{form.label_tag}}
+                    {{form}}
+
+                     {% for error in form.errors %}
+                        <div style="width:600px; height:35px;" class="text-left  alert alert-danger mt-2">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            {% endfor %}
+            <input class="btn btn-success mt-3" type="submit" value="Submit">
+        </form>
+    <a href=" {% url 'login' %} " class="btn btn-info">Login Here</a>
+
+    </div>
+{% endblock body %}

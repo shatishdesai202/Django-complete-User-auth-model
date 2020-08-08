@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+<a class="btn btn-outline-secondary mt-3 btn-block" href="{% url 'profile' %}"> <-- Back</a>
+    <form class="form-group mt-5" action="">
+    {% for form  in form %}
+         {{form.label_tag}}
+        {{form}}
+        <br>
+    {% endfor %}
+    </form>
+</div>
+{% endblock body %}
